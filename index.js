@@ -51,20 +51,12 @@ function changePage(now) {
         let query = document.querySelector(`input[name="Q${q}"]:checked`);
         if (query == null) {
             query_checked = false;
+        } else {
+            data_list[now][`Q${q}`] = data_list[now]['data'][parseInt(query.value)-1]['value'] 
         }
     }
 
-    if (query_checked) {
-        for(let q = 1; q <= num_of_questions; q++) {
-            let query = document.querySelector(`input[name="Q${q}"]:checked`);
-            data_list[now][`Q${q}`] = data_list[now]['data'][parseInt(query.value)-1]['value']   
-        }
-        return true
-    } else {
-        return false
-    }
-
-    // console.log(now, q1, q2, q3)
+    return query_checked
 }
 
 function resetRadioStatus(now) {
@@ -85,14 +77,10 @@ function resetRadioStatus(now) {
 function shuffle(array) {
     let currentIndex = array.length;
 
-    // While there remain elements to shuffle...
     while (currentIndex != 0) {
-
-        // Pick a remaining element...
         let randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
