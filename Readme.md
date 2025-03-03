@@ -13,11 +13,13 @@
 
 1. 打開 index.html  
 2. 修改 question list (line 39\)  
-   questions \= \[  
-              "Question 1",  
-              "Question 2",  
-              "Question 3"  
-          \]  
+   ```
+      questions = [  
+         "Question 1",  
+         "Question 2",  
+         "Question 3"  
+      ]  
+   ```
      
 3. 修改 form\_url (line 46)，參考[取得 form\_url](#取得-form_url)。  
 4. 檢查 username\_entry 和 entry\_list，我這裡試過直接從範本上複製後 entry id 不會改，如果執行後回答所有問題後回覆有問題的話，可以檢查一下 entry 有沒有問題。檢查方式請看[獲得 entry\_id](#獲得-entry_id)。  
@@ -76,7 +78,31 @@
    element\_type 指的是你要顯示的是 image 還是 video。  
 
 6. 修改 data，這裡預設使用此 [File Structure](#file-structure)。如果有特定的指定方式記得從 data\_list 開始修改（data\_list \[0\] 預設是 username)。  
-   ![][image4]  
+   ```
+   for(let i=1; i<16; i++) {
+      data_list.push({
+         "name": `${i}`,
+         "input": `data/${i}/original_fps15.mp4`,
+         "data": [
+            {
+               "url": `data/${i}/codef_fps15.mp4`,
+               "value": "codef"
+            },
+            {
+               "url": `data/${i}/medm_fps15.mp4`,
+               "value": "medm"
+            },
+            {
+               "url": `data/${i}/ours_fps15.mp4`,
+               "value": "ours"
+            },
+         ],
+         "Q1": null,
+         "Q2": null,
+         "Q3": null,
+      })
+   }
+   ```
    value 對應的會是最後Google form上面的回答。 
  
 7. 最後在網頁中打開 index.html 查看。
