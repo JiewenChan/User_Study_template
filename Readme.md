@@ -92,7 +92,7 @@
  
 7. 最後在網頁中打開 index.html 查看。
 
-## File structure {#file-structure}
+## File structure
 
 method 的 數量可以更改，有幾個放幾個, 預設會將所有 methods 放在同一排，如果太多就自行修改 css。  
 ```
