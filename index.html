@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Study</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-container">
+        <div id="images"></div>
+    </div>
+    <br>
+    <form>
+    <fieldset id="question" style="width:600px;">
+        <legend><b id="text_prompt"></b></legend>
+        <div id="questions"></div>
+    </fieldset>
+    </form>
+
+    <div class="navigation-container">
+        <button id="prev_button" onclick="prevPage()">PREV</button>
+        <p id="num_page"></p>
+        <button id="next_button" onclick="nextPage()">NEXT</button>
+    </div>
+
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="index.js"></script>
+    <script>
+        now = 0
+
+        questions = [
+            "Question 1",
+            "Question 2",
+            "Question 3"
+        ]
+        num_of_questions = questions.length
+        
+        form_url = "https://docs.google.com/forms/d/e/1FAIpQLSfWXOhAPmCvcUwhaJXhL18-hLdbBnupLVpR0oyZ2kCi_WGtrA/formResponse?"
+
+        username_entry = "entry.1926733457"
+        entry_list = [
+            ["entry.2125490581", "entry.2080099033", "entry.787853927"],
+            ["entry.1372537838", "entry.472180442", "entry.189779099"],
+            ["entry.879584889", "entry.1192493797", "entry.592744835"],
+            ["entry.1524869044", "entry.1553191529", "entry.442712978"],
+            ["entry.277023299", "entry.178317512", "entry.1638103689"],
+
+            ["entry.545691709", "entry.2122281902", "entry.1295635086"],
+            ["entry.1324347345", "entry.1468420399", "entry.1830225463"],
+            ["entry.1803416582", "entry.258372846", "entry.1641977658"],
+            ["entry.777412838", "entry.1188271433", "entry.723532485"],
+            ["entry.2051570683", "entry.81840528", "entry.1555251875"],
+
+            ["entry.2059414437", "entry.529442351", "entry.784480663"],
+            ["entry.1766930993", "entry.1316937407", "entry.380261123"],
+            ["entry.1489590171", "entry.1050781807", "entry.63644096"],
+            ["entry.1000678790", "entry.2121748361", "entry.1511438076"],
+            ["entry.500770907", "entry.922414313", "entry.1624512946"]
+        ]
+
+        data_list = [
+            {
+                'username': ""
+            },
+        ]
+
+        input_title = "Input Video"
+        obj_title = "Video"
+        obj_width = 256
+        element_type = "video" // video / image
+        for(let i=1; i<16; i++) {
+            data_list.push({
+                "name": `${i}`,
+                "input": `data/${i}/original_fps15.mp4`,
+                "data": [
+                    {
+                        "url": `data/${i}/codef_fps15.mp4`,
+                        "value": "codef"
+                    },
+                    {
+                        "url": `data/${i}/medm_fps15.mp4`,
+                        "value": "medm"
+                    },
+                    {
+                        "url": `data/${i}/ours_fps15.mp4`,
+                        "value": "ours"
+                    },
+                ],
+                "Q1": null,
+                "Q2": null,
+                "Q3": null,
+            })
+        }
+        num_of_selection = data_list[1]['data'].length
+
+        for(let i=1; i<data_list.length; i++) {
+            shuffle(data_list[i]['data']);
+        }
+        renderObjects(now);
+
+        $(document).ready(function(){
+            $('#username').keypress(function(e){
+                if(e.keyCode==13) {
+                    nextPage();
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

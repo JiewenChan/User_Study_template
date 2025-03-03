@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-color: #f5f5f5;
+    padding-top: 20px;
+}
+.input-object {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.titles {
+    margin-top: 5px; /* 增加間距 */
+    /* font-weight: bold; */
+}
+.video-container {
+    display: grid;
+    margin: 0 auto;
+    position: relative;
+}
+.radio-container {
+    width: 18px;
+    height: 18px;
+}
+.navigation-container {
+    display: flex;
+    justify-content: center; /* 讓內容置中 */
+    align-items: center;
+    width: 100%;
+    margin-top: 20px; /* 增加一點留白 */
+}
+#prev_button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+#next_button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+#num_page {
+    font-size: 18px;
+    font-weight: bold;
+}
+.video-row {
+    display: flex;
+    justify-content: center; /* 讓內容置中 */
+    gap: 20px; /* 影片之間的間距 */
+}
