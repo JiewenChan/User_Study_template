@@ -15,6 +15,10 @@ body {
     text-align: center;
 }
 
+fieldset {
+    border: 1px solid black;
+}
+
 .titles {
     margin-top: 5px; /* 增加間距 */
     /* font-weight: bold; */
