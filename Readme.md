@@ -141,7 +141,7 @@ method 的 數量可以更改，有幾個放幾個, 預設會將所有 methods �
    ![](readme_imgs/preview.png)
 3. 複製連結到 /preview 前
    ![](readme_imgs/form_url.png)
-4. 將 /formResponse? 前的連結進行替換, 其實也能指複製 id 替換 id就好。
+4. 將 /formResponse? 前的連結進行替換。
    ![](readme_imgs/change_form_url.png)
 
 
