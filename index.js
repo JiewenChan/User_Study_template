@@ -104,23 +104,29 @@ function generateElements(data, width, type) {
 function renderObjects(now) {
     if(now == 0) {
         let txt = `
-            <br><br><br><br><br><br>
-            <h1>User Study</h1>
-            <form style="text-align: center;" align=“center”>
-                <fieldset>
-                    <legend>Username</legend>
-                    <input type="text" id="username" value="">
+            <br/><br/><br/><br/><br/><br/>
+            <h1><font face="Comic Sans MS">User Study</font></h1>
+        `
+
+        document.getElementById("images").innerHTML = txt;
+
+        txt = `
+            <form style="display: flex; justify-content: center; margin-bottom: 20px; width: 100%;">
+                <fieldset style="width: 100%; max-width: 600px; padding: 20px; border: 1px solid black; box-sizing: border-box;">
+                    <legend style="font-size:20px;"><b><font face="Comic Sans MS">Username</font></b></legend>
+                    <input type="text" id="username" value="" style="width: 100%; padding: 10px; font-size: 16px; box-sizing: border-box;">
                 </fieldset>
             </form>
+
         `;
-        document.getElementById("images").innerHTML = txt;
+        document.getElementById("questions").innerHTML = txt;
     } else {
         let imgs_element = ""
         for(let i = 1; i <= num_of_selection; i++){
             imgs_element += `
                 <div class="input-object">
                     ${generateElements(data_list[now]['data'][i-1]['url'], obj_width, element_type)}
-                    <div class="titles">${obj_title} ${i}</div>
+                    <div class="titles"><font face="Comic Sans MS">${obj_title} ${i}</font></div>
                 </div>
             `
         }
@@ -130,7 +136,7 @@ function renderObjects(now) {
                 <label for="${data_list[now]["name"]}">
                     <div class="input-object">
                         ${generateElements(data_list[now]['input'], obj_width, element_type)}
-                        <div class="titles">${input_title}</div>
+                        <div class="titles"><font face="Comic Sans MS">${input_title}</font></div>
                     </div>
                 </label>
                 <div class="video-row">
@@ -169,12 +175,13 @@ function renderQuestions() {
     for(let q = 1; q <= num_of_questions; q++) {
         txt += `
         <p>Q${q}. ${questions[q-1]}</p>
-        <div>`
+        <div class="check-group">`
 
         for(let v = 1; v <= num_of_selection; v++){
             txt +=`
                 <input type="radio" id="q${q}v${v}" name="Q${q}" value="${v}" class="radio-container"/>
-                <label for="q${q}v${v}">${v}</label>
+                <label for="q${q}v${v}" class="btn-check"></label>
+                <label for="q${q}v${v}" class="text-check">&nbsp;${v}&nbsp;&nbsp;&nbsp;&nbsp;</label>
             `
         } 
 
