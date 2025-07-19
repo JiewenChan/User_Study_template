@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Study</title>
-    <link rel="stylesheet" href="style.css">
+    <script>
+    document.write('<link rel="stylesheet" href="style.css?v=' + Date.now() + '">');
+    </script>
 </head>
 <body>
     <div class="video-container">
         <div id="images"></div>
     </div>
     <br>
-    <form>
-    <fieldset id="question" style="width:600px;">
-        <legend><b id="text_prompt"></b></legend>
-        <div id="questions"></div>
-    </fieldset>
-    </form>
+    <div style="position: relative;display: inline-block;">
+        <form>
+        <fieldset id="question" style="width:600px;">
+            <legend><b><font size="4" face="Comic Sans MS" id="text_prompt"></font></b></legend>
+            <div id="questions"></div>
+        </fieldset>
+        </form>
 
-    <div class="navigation-container">
-        <button id="prev_button" onclick="prevPage()">PREV</button>
-        <p id="num_page"></p>
-        <button id="next_button" onclick="nextPage()">NEXT</button>
+        <div class="navigation-container">
+            <button id="prev_button" onclick="prevPage()">PREV</button>
+            <p id="num_page"></p>
+            <button id="next_button" onclick="nextPage()">NEXT</button>
+        </div>
     </div>
 
 
