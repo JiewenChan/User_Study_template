@@ -1,3 +1,7 @@
+:root{
+    --color-active: 	#005AB5;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -40,9 +44,9 @@ fieldset {
     margin-top: 20px; /* 增加一點留白 */
 }
 #prev_button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
+    position: absolute;
+    left: 0; /* 與 fieldset 的左邊界對齊 */
+    bottom: 10px; /* 調整垂直位置 */
     background-color: black;
     color: white;
     border: none;
@@ -52,9 +56,9 @@ fieldset {
     border-radius: 5px;
 }
 #next_button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    right: 0; /* 與 fieldset 的右邊界對齊 */
+    bottom: 10px; /* 調整垂直位置 */
     background-color: black;
     color: white;
     border: none;
@@ -71,4 +75,53 @@ fieldset {
     display: flex;
     justify-content: center; /* 讓內容置中 */
     gap: 20px; /* 影片之間的間距 */
+}
+
+/* check style */
+.check-group{
+    input[type="checkbox"], input[type="radio"]{
+        display: none;
+        + label{
+            vertical-align: middle;
+        }
+        + .btn-check{
+            position: relative;
+            display: inline-block;
+            width: 0.9rem;
+            height: 0.9rem;
+            border: 2px solid #ccc;
+            border-radius: .25rem;
+            background-color: #eee;
+            background-size: 60%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+        &:checked + .btn-check{
+            background-color: var(--color-active);
+            background-image: url(https://im1010ioio.github.io/super-easy-css/59/check-mark.svg);
+            border-color: var(--color-active);
+        }
+    }
+    input[type="radio"] + .btn-check{
+        border-radius: 50%;
+    }
+}
+
+/* hover and other style */
+.check-group{
+    display: inline-block;
+    .btn-check, .text-check{
+        cursor: pointer;
+        transition: .3s;
+    }
+    &:hover {
+        input[type="checkbox"], input[type="radio"]{
+            + .btn-check{
+                border-color: var(--color-active);
+            }
+            + .text-check{
+                color: var(--color-active);
+            }
+        }
+    }
 }
