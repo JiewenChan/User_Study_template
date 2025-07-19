@@ -16,7 +16,7 @@ function nextPage() {
             MySubmit += `${username_entry}=` + data_list[0]["username"] + "&";
             
             for(let i=1; i<data_list.length; i++) {
-                for(let q = 1; q <= num_of_questions; q++) {
+                for(let q = 1; q <= questions.length; q++) {
                     MySubmit += entry_list[i-1][q-1] + "=" + data_list[i][`Q${q}`] + "&";
                 };
             }
@@ -47,7 +47,8 @@ function changePage(now) {
 
     let query_checked = true
 
-    for(let q = 1; q <= num_of_questions; q++) {
+
+    for(let q = 1; q <= questions.length; q++) {
         let query = document.querySelector(`input[name="Q${q}"]:checked`);
         if (query == null) {
             query_checked = false;
@@ -60,12 +61,13 @@ function changePage(now) {
 }
 
 function resetRadioStatus(now) {
-    for(let q = 1; q <= num_of_questions; q++) {
-        for(let v = 1; v <= num_of_selection; v++) {
+
+    for(let q = 1; q <= questions.length; q++) {
+        for(let v = 1; v <= data_list[now]['data'].length; v++) {
             document.getElementById(`q${q}v${v}`).checked = false;
         }
 
-        for(let v = 1; v <= num_of_selection; v++) {
+        for(let v = 1; v <= data_list[now]['data'].length; v++) {
             if(data_list[now][`Q${q}`] === data_list[now]['data'][v-1]['value']) {
                 document.getElementById(`q${q}v${v}`).checked = true;
                 break;
@@ -122,7 +124,7 @@ function renderObjects(now) {
         document.getElementById("questions").innerHTML = txt;
     } else {
         let imgs_element = ""
-        for(let i = 1; i <= num_of_selection; i++){
+        for(let i = 1; i <= data_list[now]['data'].length; i++){
             imgs_element += `
                 <div class="input-object">
                     ${generateElements(data_list[now]['data'][i-1]['url'], obj_width, element_type)}
@@ -150,11 +152,11 @@ function renderObjects(now) {
         renderQuestions();
         document.getElementById("num_page").innerHTML = `${now}/${data_list.length-1}`;
     }
-    if(now == 0) {
-        document.getElementById("question").style.visibility="hidden";
-    } else {
-        document.getElementById("question").style.visibility="visible";
-    }
+    // if(now == 0) {
+    //     document.getElementById("question").style.visibility="hidden";
+    // } else {
+    //     document.getElementById("question").style.visibility="visible";
+    // }
 
     if(now == 0 || now == 1) {
         document.getElementById("prev_button").style.visibility="hidden";
@@ -172,12 +174,12 @@ function renderObjects(now) {
 function renderQuestions() {
     let txt = ""
 
-    for(let q = 1; q <= num_of_questions; q++) {
+    for(let q = 1; q <= questions.length; q++) {
         txt += `
         <p>Q${q}. ${questions[q-1]}</p>
         <div class="check-group">`
 
-        for(let v = 1; v <= num_of_selection; v++){
+        for(let v = 1; v <= data_list[now]['data'].length; v++){
             txt +=`
                 <input type="radio" id="q${q}v${v}" name="Q${q}" value="${v}" class="radio-container"/>
                 <label for="q${q}v${v}" class="btn-check"></label>
@@ -190,4 +192,28 @@ function renderQuestions() {
         `
         document.getElementById("questions").innerHTML = txt
     }
+}
+
+function prohibitpreviouspage(){
+
+    if(navigator.userAgent.indexOf('Firefox') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Firefox') + 8)) >= 3.6 ){
+        //Firefox
+        setTimeout("fn_forward()",1);
+        window.history.go(1);
+    } else if (
+        navigator.userAgent.indexOf('Safari') !== -1 &&
+        navigator.userAgent.indexOf('Chrome') === -1 &&
+        navigator.userAgent.indexOf('Chromium') === -1
+    ) {
+        // Safari
+        setTimeout("fn_forward()", 1);
+        window.history.forward();
+    } else { //IE.Chrome.Edge
+        window.history.forward();
+    }
+}
+
+function fn_forward() {
+    history.forward();
+    setTimeout("fn_forward()",1);
 }
